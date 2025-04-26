@@ -34,6 +34,3 @@ $isFormPage = preg_match('/^(tambah_|edit_)/', $current_file);
 
         <!-- Navbar -->
         <?php include 'navbar.php'; ?>
-
-        <!-- Sidebar -->
-        <?php include 'sidebar.php'; ?>
