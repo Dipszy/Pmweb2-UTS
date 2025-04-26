@@ -44,6 +44,7 @@ $kategori = mysqli_query($conn, "SELECT * FROM kategori");
       <div class="form-group">
         <label>Kab/Kota</label>
         <select name="kabkota_id" class="form-control" required>
+          <option value="kab">--Pilih Kab/Kota--</option>
           <?php while ($row = mysqli_fetch_assoc($kabkota)) : ?>
             <option value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
           <?php endwhile; ?>
@@ -68,6 +69,7 @@ $kategori = mysqli_query($conn, "SELECT * FROM kategori");
       <div class="form-group">
         <label>Jenis Faskes</label>
         <select name="jenis_faskes_id" class="form-control" required>
+          <option value="jenis">--Pilih Jenis--</option>
           <?php while ($row = mysqli_fetch_assoc($jenis_faskes)) : ?>
             <option value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
           <?php endwhile; ?>
@@ -77,6 +79,7 @@ $kategori = mysqli_query($conn, "SELECT * FROM kategori");
       <div class="form-group">
         <label>Kategori</label>
         <select name="kategori_id" class="form-control" required>
+          <option value="kategori">--Pilih Kategori--</option>
           <?php while ($row = mysqli_fetch_assoc($kategori)) : ?>
             <option value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
           <?php endwhile; ?>
