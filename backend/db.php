@@ -1,9 +1,9 @@
 <?php
 // Koneksi ke database
 $host = 'localhost';
-$user = 'root';       // Sesuaikan dengan username database Anda
-$pass = '';           // Sesuaikan dengan password database Anda
-$dbname = 'db_faskes'; // Nama database yang digunakan
+$user = 'root';
+$pass = '';
+$dbname = 'db_faskes';
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

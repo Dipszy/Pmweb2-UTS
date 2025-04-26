@@ -4,7 +4,6 @@ include '../backend/db.php';
 
 $activePage = 'faskes';
 
-// Perbaiki query: join ke tabel kabkota, jenis_faskes, dan kategori
 $query = "SELECT 
             faskes.*, 
             kabkota.nama AS kabkota_nama, 

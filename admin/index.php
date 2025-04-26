@@ -3,9 +3,8 @@ session_start();
 
 $activePage = 'dashboard';
 include 'helper.php';
-include '../backend/db.php'; // tambahin ini biar konek database
+include '../backend/db.php';
 
-// Ambil jumlah data dari database
 $faskesQuery = mysqli_query($conn, "SELECT COUNT(*) AS total FROM faskes");
 $faskes = mysqli_fetch_assoc($faskesQuery);
 

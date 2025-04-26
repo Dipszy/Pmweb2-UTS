@@ -7,7 +7,6 @@ $query = "SELECT * FROM faskes WHERE id = $id";
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
-// Ambil kabkota, jenis faskes, kategori untuk dropdown
 $kabkota = mysqli_query($conn, "SELECT * FROM kabkota");
 $jenis_faskes = mysqli_query($conn, "SELECT * FROM jenis_faskes");
 $kategori = mysqli_query($conn, "SELECT * FROM kategori");

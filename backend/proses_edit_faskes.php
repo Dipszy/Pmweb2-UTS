@@ -1,6 +1,6 @@
 <?php
 include 'db.php';
-session_start(); // biar bisa pakai $_SESSION kalau mau kasih notifikasi
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'] ?? '';
