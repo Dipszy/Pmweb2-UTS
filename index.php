@@ -1,32 +1,110 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaskesUTS</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Daftar Faskes</a></li>
-                <li><a href="#">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="main-content">
-        <h1>Selamat Datang di FaskesUTS</h1>
-        <p>Temukan informasi faskes di sekitar Anda.</p>
-        <a href="login/login.php" class="btn-login">Login Admin</a>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 PMWEB2 KELOMPOK 2.</p>
-    </footer>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Login - SB Admin</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        <form class="user" action="" method="post">
+
+                                        <?php
+                                        session_start(); // Jangan lupa session_start()
+
+                                        error_reporting(E_ALL);
+                                        ini_set('display_errors', 1);
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                            include 'Config/koneksi.php';
+
+                                            $email = $_POST['inputemail'] ?? '';
+                                            $password = $_POST['inputpassword'] ?? '';
+
+                                            try {
+                                                $stmt = $pdo->prepare("SELECT id, email, password FROM users WHERE email = ?");
+                                                $stmt->execute([$email]);
+                                                $user = $stmt->fetch();
+
+                                                if ($user) {
+                                                    // Bandingkan password langsung (jika belum di-hash)
+                                                    if ($password === $user['password']) {
+                                                        $_SESSION['user_id'] = $user['id'];
+                                                        $_SESSION['email'] = $user['email'];
+
+                                                        echo 'Session email: ' . $_SESSION['email'];
+                                                        echo 'Session ID: ' . session_id(); // Cek ID session
+
+                                                        header("Location: root.php");
+                                                        exit();
+                                                    } else {
+                                                        $error = "Password salah!";
+                                                    }
+                                                } else {
+                                                    $error = "Email tidak terdaftar!";
+                                                }
+                                            } catch (PDOException $e) {
+                                                die("Error saat login: " . $e->getMessage());
+                                            }
+                                        }
+                                        ?>
+                                        
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputemail" type="inputemail" placeholder="name@example.com" name = "inputemail"/>
+                                                <label for="email">Email address</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputpassword" type="password" placeholder="Password" name = "inputpassword" />
+                                                <label for="inputPassword">Password</label>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <button class="btn btn-primary" type="submit">Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
-
-
