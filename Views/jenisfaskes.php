@@ -94,19 +94,19 @@
                     if (isset($_POST['type'])) {
                         if ($_POST['type'] == "delete") {
                             $jenisfaskes->delete($_POST['id']);
-                            echo '<script>alert("hapus berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenis$jenisfaskes">';
+                            echo '<script>alert("hapus berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenisfaskes">';
                         } elseif ($_POST['type'] == "tambah") {
                             $data = [
                                 'nama' => $_POST['nama'],
                             ];
                             $jenisfaskes->create($data);
-                            echo '<script>alert("tambah berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenis$jenisfaskes">';
+                            echo '<script>alert("tambah berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenisfaskes">';
                         } elseif ($_POST['type'] == "update") {
                             $data = [
                                 'nama' => $_POST['nama'],
                             ];
                             $jenisfaskes->update($_POST['id'], $data);
-                            echo '<script>alert("update berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenis$jenisfaskes">';
+                            echo '<script>alert("update berhasil")</script><meta http-equiv="refresh" content="0; url=?url=jenisfaskes">';
                         }
                     }
                     ?>

@@ -44,43 +44,55 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Provinsi*</label>
-                                <select class="form-control" id="provinsi" required>
-                                    <option value="">Pilih Provinsi</option>
-                                    <?php foreach($provinsi as $prov): ?>
-                                        <option value="<?=$prov['id']?>"><?=$prov['nama']?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <select name="provinsi_id" class="form-control" required>
+                                        <option value="">Pilih Provinsi</option>
+                                        <?php
+                                        require_once("Controllers/Provinsi.php");
+                                        $provinsi = $provinsi->index();
+                                        foreach ($provinsi as $item) {
+                                            echo '<option value="' . $item['id'] . '">' . $item['nama'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                             </div>
                             <div class="form-group">
                                 <label>Kabupaten/Kota*</label>
-                                <select name="kabkota" class="form-control" id="kabkota" required>
-                                    <option value="">Pilih Kab/Kota</option>
-                                </select>
+                                <select name="kabkota_id" class="form-control" required>
+                                        <option value="">Pilih Kabupaten/Kota</option>
+                                        <?php
+                                        require_once("Controllers/KabKota.php");
+                                        $kabkota = $kabkota->index();
+                                        foreach ($kabkota as $item) {
+                                            echo '<option value="' . $item['id'] . '">' . $item['nama'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Faskes*</label>
-                                <select name="jenis_faskes" class="form-control" required>
-                                    <option value="">Pilih Jenis</option>
-                                    <?php
-                                    require_once("Controllers/JenisFaskes.php");
-                                    $jenisfaskes = new JenisFaskes($pdo);
-                                    $datajenisfaskes = $jenisfaskes->index();
-                                    foreach($datajenisfaskes as $jf): ?>
-                                        echo '<option value="<?=$jf['id']?>"><?=$jf['nama']?></option>';
-                                    <?php endforeach; ?>
+                                <select name="jenis_faskes_id" class="form-control" required>
+                                        <option value="">Pilih Jenis Faskes</option>
+                                        <?php require_once("Controllers/JenisFaskes.php");
+                                        $jenisfaskes = new JenisFaskes($pdo);
+                                        $datajenisfaskes = $jenisfaskes->index();
+                                        foreach ($datajenisfaskes as $jenis) {
+                                            echo '<option value="'.$jenis['id'].'">'.$jenis['nama'].'</option>';
+                                        }
+                                        ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Kategori*</label>
-                                <select name="kategori" class="form-control" required>
+                                <select name="kategori_id" class="form-control" required>
                                     <option value="">Pilih Kategori</option>
                                     <?php
                                     require_once("Controllers/KategoriFaskes.php");
                                     $kategorifaskes = new KategoriFaskes($pdo);
                                     $datakategorifaskes = $kategorifaskes->index();
-                                    foreach($datakategorifaskes as $kf): ?>
-                                        <option value="<?=$kf['id']?>"><?=$kf['nama']?></option>
-                                    <?php endforeach; ?>
+                                    foreach ($datakategorifaskes as $kategori) {
+                                        echo '<option value="'.$kategori['id'].'">'.$kategori['nama'].'</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -16,7 +16,7 @@
                         <form method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="nama">Nama</label>
+                                    <label for="nama">Nama Provinsi</label>
                                     <input type="text" name="nama" class="form-control" required>
                                 </div>
                                 <div class="form-group">
