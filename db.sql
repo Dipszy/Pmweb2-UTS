@@ -1,3 +1,4 @@
+
 -- DROP TABLES KALO MAU RISET
 -- DROP TABLE faskes;
 -- DROP TABLE kategori;
@@ -48,7 +49,7 @@ CREATE TABLE faskes (
     FOREIGN KEY (kabkota_id) REFERENCES kabkota(id),
     FOREIGN KEY (jenis_faskes_id) REFERENCES jenis_faskes(id),
     FOREIGN KEY (kategori_id) REFERENCES kategori(id)
-);  q
+);
 
 INSERT INTO provinsi (nama, ibukota, latitude, longitude) VALUES
 ('Jawa Barat', 'Bandung', -6.914744, 107.609810),
