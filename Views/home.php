@@ -1,5 +1,17 @@
 <?php
+require_once 'Controllers/Dashboard.php';
+require_once 'Controllers/JenisFaskes.php';
+require_once 'Controllers/KategoriFaskes.php';
+require_once 'Controllers/Provinsi.php';
+require_once 'Controllers/KabKota.php';
+
 // Bagian ini akan di-include di dalam Layouts/app.php yang sudah memiliki sidebar/topbar
+$total_faskes = $dashboard->getCount('faskes');
+$total_provinsi = $dashboard->getCount('provinsi');
+$total_kabkota = $dashboard->getCount('kabkota');
+$total_jenis = $dashboard->getCount('jenis_faskes');
+$total_kategori = $dashboard->getCount('kategori');
+$avg_rating = $dashboard->getAvgRating('faskes');
 ?>
 
 <!-- Begin Page Content -->
@@ -114,13 +126,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($recent_faskes as $faskes): ?>
+                            <?php 
+                            $recent_faskes = $dashboard->getRecentFaskes(5); // Ambil 5 faskes terbaru
+                            if (isset($recent_faskes) && !empty($recent_faskes)) : 
+                            ?>
                                 <tr>
+                                <?php foreach ($recent_faskes as $faskes) : ?>
                                     <td><?= $faskes['nama'] ?></td>
                                     <td><?= $faskes['kabkota'] ?></td>
                                     <td><?= str_repeat('★', $faskes['rating']) ?></td>
-                                </tr>
                                 <?php endforeach; ?>
+                                </tr>
+                            <?php else : ?>
+                                <p>Tidak ada data fasilitas kesehatan terbaru.</p>
+                            <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
