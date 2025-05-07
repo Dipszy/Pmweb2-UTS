@@ -13,35 +13,11 @@
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item <?= ($file == 'home') ? 'active' : '' ?>">
     <a class="nav-link" href="?page=dashboard">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
-
-<!-- Divider -->
-<!-- <hr class="sidebar-divider"> -->
-
-<!-- Heading -->
-<!-- <div class="sidebar-heading">
-    Data Refrensi
-</div> -->
-
-<!-- Nav Item - Pages Collapse Menu -->
-<!-- <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Master Data</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.html">Provinsi</a>
-            <a class="collapse-item" href="cards.html">KabKota</a>
-            <a class="collapse-item" href="cards.html">Jenis Faskes</a>
-        </div>
-    </div>
-</li> -->
 
 <hr class="sidebar-divider">
 
@@ -49,30 +25,30 @@
 <div class="sidebar-heading">
     Manajemen Faskes
 </div>
-<li class="nav-item">
+<li class="nav-item <?= ($file == 'fasilitaskesehatan') ? 'active' : '' ?>">
     <a class="nav-link" href="?url=fasilitaskesehatan">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-hospital"></i>
         <span>Fasilitas Kesehatan</span></a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item <?= ($file == 'provinsi') ? 'active' : '' ?>">
     <a class="nav-link" href="?url=provinsi">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-map-marked-alt"></i>
         <span>Provinsi</span></a>
 </li>
-<li class="nav-item">
+<li class="nav-item <?= ($file == 'kabkota') ? 'active' : '' ?>">
     <a class="nav-link" href="?url=kabkota">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-city"></i>
         <span>KabKota</span></a>
 </li>
-<li class="nav-item">
+<li class="nav-item <?= ($file == 'jenisfaskes') ? 'active' : '' ?>">
     <a class="nav-link" href="?url=jenisfaskes">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-notes-medical"></i>
         <span>Jenis Faskes</span></a>
 </li>
-<li class="nav-item">
+<li class="nav-item <?= ($file == 'kategorifaskes') ? 'active' : '' ?>">
     <a class="nav-link" href="?url=kategorifaskes">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-th-list"></i>
         <span>Kategori Faskes</span></a>
 </li>
 
