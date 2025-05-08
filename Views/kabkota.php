@@ -120,6 +120,7 @@
                                                 <label for="longitude">Longitude</label>
                                                 <input type="text" name="longitude" class="form-control" value="<?= $item['longitude'] ?>" required>
                                             </div>
+                                            
                                             <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                             <input type="hidden" name="type" value="update">
                                         </div>

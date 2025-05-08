@@ -1,7 +1,7 @@
 <?php
 require_once 'Config/koneksi.php';
 
-class FasilitasKesehatan
+class Faskes
 {
     private $pdo;
 
@@ -22,7 +22,7 @@ class FasilitasKesehatan
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare("INSERT INTO faskes (nama, nama_pengelola, alamat, website, email, kabkota_id, rating, latitude, longitude, jenis_faskes_id, kategori_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO faskes (nama , nama_pengelola, alamat, website, email, kabkota_id, rating, latitude, longitude, jenis_faskes_id, kategori_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         return $stmt->execute([
             $data['nama'],
             $data['nama_pengelola'],
@@ -34,12 +34,13 @@ class FasilitasKesehatan
             $data['latitude'],
             $data['longitude'],
             $data['jenis_faskes_id'],
-            $data['kategori_id']
+            $data['kategori_id'],
+
         ]);
     }
 
     public function update($id, $data) {
-        $stmt = $this->pdo->prepare("UPDATE faskes SET nama=? , nama_pengelola = ?, alamat = ?, website = ?, email = ?, kabkota_id = ?, rating = ?, latitude = ?, longitude = ?, jenis_faskes_id = ?, kategori_id = ? WHERE id=?");
+        $stmt = $this->pdo->prepare("UPDATE faskes SET nama = ?, nama_pengelola = ?, alamat = ?, website = ?, email = ?, kabkota_id = ?, rating = ?, latitude = ?, longitude = ?, jenis_faskes_id = ?, kategori_id = ? WHERE id=?");
         return $stmt->execute([
             $data['nama'],
             $data['nama_pengelola'],
@@ -62,4 +63,4 @@ class FasilitasKesehatan
     }
 }
 
-$faskes = new FasilitasKesehatan($pdo);
+$faskes = new Faskes($pdo);

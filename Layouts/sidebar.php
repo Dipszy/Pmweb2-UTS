@@ -29,8 +29,8 @@
     </div>
 
     <!-- Nav Items -->
-    <li class="nav-item <?php echo ($file == 'fasilitaskesehatan') ? 'active' : ''; ?>">
-        <a class="nav-link" href="?url=fasilitaskesehatan">
+    <li class="nav-item <?php echo ($file == 'faskes') ? 'active' : ''; ?>">
+        <a class="nav-link" href="?url=faskes">
             <i class="fas fa-fw fa-hospital"></i>
             <span>Fasilitas Kesehatan</span>
         </a>
