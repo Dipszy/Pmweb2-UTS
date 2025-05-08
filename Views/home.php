@@ -12,6 +12,7 @@ $total_kabkota = $dashboard->getCount('kabkota');
 $total_jenis = $dashboard->getCount('jenis_faskes');
 $total_kategori = $dashboard->getCount('kategori');
 $avg_rating = $dashboard->getAvgRating('faskes');
+$recent_faskes = $dashboard->getRecentFaskes(5); // Ambil 5 faskes terbaru
 ?>
 
 <!-- Begin Page Content -->
