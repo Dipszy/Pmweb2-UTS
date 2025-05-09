@@ -12,6 +12,7 @@ $total_kabkota = $dashboard->getCount('kabkota');
 $total_jenis = $dashboard->getCount('jenis_faskes');
 $total_kategori = $dashboard->getCount('kategori');
 $avg_rating = $dashboard->getAvgRating('faskes');
+$avg_rating_int = round($avg_rating);
 $recent_faskes = $dashboard->getRecentFaskes(5); // Ambil 5 faskes terbaru
 ?>
 
@@ -85,7 +86,7 @@ $recent_faskes = $dashboard->getRecentFaskes(5); // Ambil 5 faskes terbaru
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Rating Rata-rata</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $avg_rating ?>/5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $avg_rating_int ?>/5</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-star fa-2x text-gray-300"></i>

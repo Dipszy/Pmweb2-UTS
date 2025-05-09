@@ -140,12 +140,12 @@
                             <td><?= $item['alamat'] ?></td>
                             <td><?= $item['website'] ?></td>
                             <td><?= $item['email'] ?></td>
-                            <td><?= $item['kabkota_id'] ?></td>
+                            <td><?= $item['nama_kabkota'] ?></td>
                             <td><?= str_repeat('★', $item['rating']) ?></td>
                             <td><?= $item['latitude'] ?></td>
                             <td><?= $item['longitude'] ?></td>
-                            <td><?= $item['jenis_faskes'] ?></td>
-                            <td><?= $item['kategori'] ?></td>
+                            <td><?= $item['nama_jenis_faskes'] ?></td>
+                            <td><?= $item['nama_kategori'] ?></td>
                             <!-- Aksi Edit dan Hapus -->
                             <td>
                                 <!-- Hapus Button -->

@@ -11,7 +11,11 @@ class Faskes
     }
 
     public function index() {
-        $stmt = $this->pdo->query("SELECT * FROM faskes");
+        $stmt = $this->pdo->query("SELECT faskes.*, kabkota.nama AS nama_kabkota, jenis_faskes.nama AS nama_jenis_faskes, kategori.nama AS nama_kategori
+        FROM faskes 
+        JOIN jenis_faskes ON faskes.jenis_faskes_id = jenis_faskes.id
+        JOIN kategori ON faskes.kategori_id = kategori.id
+        JOIN kabkota ON faskes.kabkota_id = kabkota.id");
         return $stmt->fetchALL();
     }
 
