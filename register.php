@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registrasi</title>
 
     <style>
         body {
@@ -85,7 +85,7 @@
     <div class="container">
         <div class="form-container">
             <h1>Pemweb2</h1>
-            <h2>Masuk ke Fasilitas Kesehatan</h2>
+            <h2>Registrasi Fasilitas Kesehatan</h2>
 
             <form method="POST" action="">
                 <?php
@@ -99,27 +99,29 @@
 
                     $email = $_POST['email'] ?? '';
                     $password = $_POST['password'] ?? '';
+                    $confirm_password = $_POST['confirm_password'] ?? '';
 
-                    try {
-                        $stmt = $pdo->prepare("SELECT id, email, password FROM users WHERE email = ?");
-                        $stmt->execute([$email]);
-                        $user = $stmt->fetch();
+                    if ($password !== $confirm_password) {
+                        $error = "Kata sandi tidak cocok!";
+                    } else {
+                        try {
+                            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+                            $stmt->execute([$email]);
+                            $existing_user = $stmt->fetch();
 
-                        if ($user) {
-                            if (password_verify($password, $user['password'])) {
-                                $_SESSION['user_id'] = $user['id'];
-                                $_SESSION['email'] = $user['email'];
-
-                                header("Location: root.php");
-                                exit();
+                            if ($existing_user) {
+                                $error = "Email sudah terdaftar!";
                             } else {
-                                $error = "Password salah!";
+                                $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
+                                $stmt->execute([$email, password_hash($password, PASSWORD_DEFAULT)]);
+
+                                echo 'Registrasi berhasil! Silakan masuk.';
+                                header("Location: index.php");
+                                exit();
                             }
-                        } else {
-                            $error = "Email tidak terdaftar!";
+                        } catch (PDOException $e) {
+                            die("Error saat registrasi: " . $e->getMessage());
                         }
-                    } catch (PDOException $e) {
-                        die("Error saat login: " . $e->getMessage());
                     }
                 }
                 ?>
@@ -134,8 +136,11 @@
                 <label for="password">Kata Sandi</label>
                 <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required>
 
-                <button type="submit">Masuk</button>
-                <a href="register.php">Daftar</a> <!-- Link untuk pindah ke halaman registrasi -->
+                <label for="confirm_password">Konfirmasi Kata Sandi</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Konfirmasi kata sandi" required>
+
+                <button type="submit">Daftar</button>
+                <a href="index.php">Sudah punya akun? Masuk</a> <!-- Link untuk kembali ke halaman login -->
             </form>
         </div>
     </div>
