@@ -1,96 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Login - SB Admin</title>
-        <link href="css/sb-admin-2.min.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
-                                        <form class="user" action="" method="post">
 
-                                        <?php
-                                        session_start(); // Jangan lupa session_start()
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia cemas</title>
 
-                                        error_reporting(E_ALL);
-                                        ini_set('display_errors', 1);
+    <style>
+        body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: url('https://omnicare.co.id/blog/wp-content/uploads/2021/12/artikel-pilar-3.-mengelola-fasilitas-kesehatan.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            include 'Config/koneksi.php';
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
 
-                                            $email = $_POST['inputemail'] ?? '';
-                                            $password = $_POST['inputpassword'] ?? '';
+.sidebar-background {
+    display: none;
+}
 
-                                            try {
-                                                $stmt = $pdo->prepare("SELECT id, email, password FROM users WHERE email = ?");
-                                                $stmt->execute([$email]);
-                                                $user = $stmt->fetch();
+.form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 400px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
 
-                                                if ($user) {
-                                                    // Bandingkan password langsung (jika belum di-hash)
-                                                    if ($password === $user['password']) {
-                                                        $_SESSION['user_id'] = $user['id'];
-                                                        $_SESSION['email'] = $user['email'];
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
 
-                                                        echo 'Session email: ' . $_SESSION['email'];
-                                                        echo 'Session ID: ' . session_id(); // Cek ID session
+h2 {
+    font-size: 18px;
+    color: #2c3e50;
+}
 
-                                                        header("Location: root.php");
-                                                        exit();
-                                                    } else {
-                                                        $error = "Password salah!";
-                                                    }
-                                                } else {
-                                                    $error = "Email tidak terdaftar!";
-                                                }
-                                            } catch (PDOException $e) {
-                                                die("Error saat login: " . $e->getMessage());
-                                            }
-                                        }
-                                        ?>
-                                        
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputemail" type="inputemail" placeholder="name@example.com" name = "inputemail"/>
-                                                <label for="email">Email address</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputpassword" type="password" placeholder="Password" name = "inputpassword" />
-                                                <label for="inputPassword">Password</label>
-                                            </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
-                                                <button class="btn btn-primary" type="submit">Login</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #27ae60;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar-background"></div>
+        <div class="form-container">
+            <h1>Pemweb2</h1>
+            <h2>Fasilitas Kesehatan</h2>
+
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = htmlspecialchars($_POST['username']);
+                $password = htmlspecialchars($_POST['password']);
+
+                echo "<p><strong>Username:</strong> $username</p>";
+                echo "<p><strong>Password:</strong> $password</p>";
+            }
+            ?>
+
+            <form method="POST" action="">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                
+                <label for="password">Kata sandi</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required>
+                
+                <button type="submit">Masuk</button>
+            </form>
+            <a href="#">Lupa kata sandi?</a>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+    </div>
+</body>
 </html>

@@ -11,7 +11,6 @@ $total_provinsi = $dashboard->getCount('provinsi');
 $total_kabkota = $dashboard->getCount('kabkota');
 $total_jenis = $dashboard->getCount('jenis_faskes');
 $total_kategori = $dashboard->getCount('kategori');
-$avg_rating = $dashboard->getAvgRating('faskes');
 $avg_rating_int = round($avg_rating);
 $recent_faskes = $dashboard->getRecentFaskes(5); // Ambil 5 faskes terbaru
 ?>
